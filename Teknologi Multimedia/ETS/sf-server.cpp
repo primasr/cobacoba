@@ -134,18 +134,6 @@ void display(int n, node p[])
 	sleep(1);
 }
 
-// converts character array
-// to string and returns it
-string convertToString(char* a, int size)
-{
-    int i;
-    string s = "";
-    for (i = 0; i < size; i++) {
-        s = s + a[i];
-    }
-    return s;
-}
-
 int main(int argc, char const *argv[])
 {
 	// int server_fd, new_socket, valread;
@@ -197,7 +185,7 @@ int main(int argc, char const *argv[])
 	int n, i, j;
 	float total = 0;
 	int buffer_size = sizeof(buffer) / sizeof(char);
-	string ch = convertToString(buffer, buffer_size);
+	string ch(buffer);
 	node temp;
 	float x[100];
 	map<char , int >m;
