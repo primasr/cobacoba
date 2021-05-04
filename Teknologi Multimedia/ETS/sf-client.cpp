@@ -41,6 +41,7 @@ int main(int argc, char const *argv[])
     }
 
     char str[255];
+    printf("Input your message: ");
     scanf("%[^\n]s", str);
     send(sock , str , strlen(str) , 0 );
     printf("Your message has been sent\n");
