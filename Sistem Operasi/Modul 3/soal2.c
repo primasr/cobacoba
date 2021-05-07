@@ -29,8 +29,8 @@ child_id = fork();
 if (child_id == 0) {
   close(fp1[0]);
   dup2(fp1[1], STDOUT_FILENO);
-  char *argv[] = {"ls", NULL};
-  execv("/bin/ls", argv);
+  char *argv[] = {"ps","aux", NULL};
+  execv("/bin/ps", argv);
 } else {
   // this is parent
   while ((wait(&status)) > 0);
@@ -43,15 +43,17 @@ if (child_id == 0) {
     dup2(fp1[0], STDIN_FILENO);
     close(fp2[0]);
     dup2(fp2[1], STDOUT_FILENO);
-    char *argv[] = {"head", "-3", NULL};
-    execv("/usr/bin/head", argv);
+    char *argv[] = {"sort","-nrk","3,3", NULL};
+    execv("/usr/bin/sort", argv);
   }else{
     while ((wait(&status)) > 0);
     close(fp2[1]);
     dup2(fp2[0], STDIN_FILENO);
-    char *argv[] = {"tail", "-1", NULL};
-    execv("/usr/bin/tail", argv);
+    char *argv[] = {"head", "-5", NULL};
+    execv("/usr/bin/head", argv);
   }
 }
-}
 
+
+return 0;
+}
